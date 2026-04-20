@@ -1,0 +1,18 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: bdsnowflake_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: bdsnowflake
+      POSTGRES_USER: ivan
+      POSTGRES_PASSWORD: password
+    ports:
+      - "55432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init:/docker-entrypoint-initdb.d:ro
+      - ./исходные данные:/data:ro
+
+volumes:
+  postgres_data:
